@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Waqas Khan — Senior Android Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #111827;
+    --navy-light: #1e293b;
+    --accent: #00e5a0;
+    --accent-dim: rgba(0,229,160,0.12);
+    --accent-mid: rgba(0,229,160,0.4);
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --border: rgba(255,255,255,0.06);
+    --border-hover: rgba(0,229,160,0.3);
+    --card-bg: rgba(30,41,59,0.5);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    backdrop-filter: blur(20px);
+    background: rgba(10,15,30,0.85);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent);
+    color: var(--navy) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-glow {
+    position: absolute;
+    top: 20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-mid);
+    color: var(--accent);
+    padding: 0.375rem 1rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s 0.1s ease both;
+  }
+  h1 .name-accent { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    animation: fadeInUp 0.6s 0.2s ease both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--navy);
+    padding: 0.875rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(0,229,160,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0,229,160,0.5); }
+  .btn-outline {
+    border: 1px solid var(--border-hover);
+    color: var(--accent);
+    padding: 0.875rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+  .btn-outline:hover { background: var(--accent-dim); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    animation: fadeInUp 0.6s 0.4s ease both;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-intro { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; margin-bottom: 3.5rem; font-weight: 300; }
+
+  /* ── SKILLS ── */
+  #skills { border-top: 1px solid var(--border); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    backdrop-filter: blur(10px);
+  }
+  .skill-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+  .skill-card-icon {
+    width: 40px; height: 40px;
+    background: var(--accent-dim);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+  .skill-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+  .tag {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { border-top: 1px solid var(--border); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem; top: 8px;
+    width: 9px; height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--navy), 0 0 0 4px var(--accent-mid);
+  }
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .timeline-date {
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    background: var(--accent-dim);
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+  }
+  .timeline-location { font-size: 0.8rem; color: var(--text-dim); }
+  .timeline-item h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .timeline-company { color: var(--accent); font-size: 0.9rem; font-weight: 500; margin-bottom: 1rem; }
+  .timeline-body {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+  .timeline-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .timeline-body li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+  .timeline-body li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+  }
+
+  /* ── EDUCATION ── */
+  #education { border-top: 1px solid var(--border); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .edu-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, var(--accent-dim), transparent 70%);
+  }
+  .edu-card:hover { border-color: var(--border-hover); }
+  .edu-degree {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .edu-uni { color: var(--accent); font-size: 0.9rem; font-weight: 500; margin-bottom: 0.75rem; }
+  .edu-period { font-size: 0.8rem; color: var(--text-dim); }
+  .edu-badge {
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent-mid);
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+    font-size: 0.73rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ABOUT / CTA ── */
+  #about { border-top: 1px solid var(--border); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-text p { color: var(--text-muted); font-weight: 300; margin-bottom: 1rem; font-size: 1.05rem; }
+  .contact-block {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+  }
+  .contact-block h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .contact-block p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; font-weight: 300; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .contact-icon {
+    width: 32px; height: 32px;
+    background: var(--accent-dim);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+  .contact-item a { color: var(--text); text-decoration: none; }
+  .contact-item a:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  footer span { color: var(--accent); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">WK.</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#about">Contact</a></li>
+    <li><a href="mailto:waqaskhan_7@hotmail.com" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Available for opportunities · Birmingham, UK</div>
+    <h1>Muhammad<br><span class="name-accent">Waqas Khan</span></h1>
+    <p class="hero-sub">Senior Android Developer with 8+ years building production apps serving millions of users. MSc in International Business with Data Analytics.</p>
+    <div class="hero-actions">
+      <a href="#experience" class="btn-primary">View My Work</a>
+      <a href="mailto:waqaskhan_7@hotmail.com" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">M+</div>
+        <div class="stat-label">App Downloads</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Companies</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-label">Core Competencies</div>
+    <h2>Skills & Expertise</h2>
+    <p class="section-intro">A decade of hands-on Android development backed by security engineering and full-stack web experience.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">📱</div>
+      <h3>Android Development</h3>
+      <div class="tags">
+        <span class="tag">Java</span><span class="tag">Kotlin</span><span class="tag">Android SDK</span>
+        <span class="tag">Android Studio</span><span class="tag">MVVM</span><span class="tag">Clean Architecture</span>
+        <span class="tag">DataBinding</span><span class="tag">Coroutines</span><span class="tag">WorkManager</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🔗</div>
+      <h3>APIs & Networking</h3>
+      <div class="tags">
+        <span class="tag">RESTful APIs</span><span class="tag">Retrofit</span><span class="tag">JSON</span>
+        <span class="tag">Firebase</span><span class="tag">Google Maps SDK</span><span class="tag">AdMob</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🗄️</div>
+      <h3>Data & Storage</h3>
+      <div class="tags">
+        <span class="tag">Room Database</span><span class="tag">SQLite</span><span class="tag">Firebase</span>
+        <span class="tag">Gradle</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🛡️</div>
+      <h3>Security Engineering</h3>
+      <div class="tags">
+        <span class="tag">App Security</span><span class="tag">Vulnerability Analysis</span>
+        <span class="tag">Reverse Engineering</span><span class="tag">Xposed Framework</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🌐</div>
+      <h3>Web Development</h3>
+      <div class="tags">
+        <span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Full-Stack</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">⚙️</div>
+      <h3>Engineering Practices</h3>
+      <div class="tags">
+        <span class="tag">Git</span><span class="tag">Agile / Scrum</span><span class="tag">Code Review</span>
+        <span class="tag">CI/CD</span><span class="tag">Mentoring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">Career History</div>
+    <h2>Work Experience</h2>
+    <p class="section-intro">From Ministry of Defence security research to scaling consumer apps with millions of downloads.</p>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-date">Mar 2021 – Dec 2023</span>
+        <span class="timeline-location">📍 Islamabad, Pakistan</span>
+      </div>
+      <h3>Senior Software Engineer – Android</h3>
+      <div class="timeline-company">Generic Apps</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Architected and shipped Android applications using Java & Android Studio, achieving millions of downloads on the Google Play Store.</li>
+          <li>Drove adoption of MVVM architecture, significantly improving code maintainability and team velocity.</li>
+          <li>Integrated RESTful APIs to power seamless client–server communication across multiple products.</li>
+          <li>Led cross-functional collaboration with designers and project managers to deliver high-quality releases on schedule.</li>
+          <li>Implemented comprehensive testing across diverse device configurations; managed version control via Git.</li>
+          <li>Built full-stack web portals using PHP Laravel as a secondary deliverable.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-date">Mar 2018 – Mar 2021</span>
+        <span class="timeline-location">📍 Islamabad, Pakistan</span>
+      </div>
+      <h3>Research Engineer</h3>
+      <div class="timeline-company">Ministry of Defence</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Designed and delivered secure Android applications protecting sensitive user data against breach vectors.</li>
+          <li>Conducted in-depth security audits of existing Android applications to identify and remediate vulnerabilities.</li>
+          <li>Performed reverse engineering of third-party apps to detect malicious behaviour and data exfiltration.</li>
+          <li>Leveraged the Xposed Framework to intercept and block unauthorised personal data collection attempts.</li>
+          <li>Maintained continuous monitoring cycles to address newly emerging security threats.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-date">Aug 2017 – Mar 2018</span>
+        <span class="timeline-location">📍 Islamabad, Pakistan</span>
+      </div>
+      <h3>Android Developer</h3>
+      <div class="timeline-company">Axact</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Designed and shipped scalable, high-quality Android applications meeting client requirements and industry standards.</li>
+          <li>Collaborated with design, QA, and product management teams in Agile sprints including stand-ups and retrospectives.</li>
+          <li>Integrated RESTful APIs and participated actively in the full app release cycle.</li>
+          <li>Mentored and coached junior developers, providing structured guidance and code reviews.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-date">May 2015 – Aug 2017</span>
+        <span class="timeline-location">📍 Islamabad, Pakistan</span>
+      </div>
+      <h3>Android Development Intern</h3>
+      <div class="timeline-company">Jolta Technologies</div>
+      <div class="timeline-body">
+        <ul>
+          <li>Built and maintained product-based Android applications with server-side REST API integration.</li>
+          <li>Integrated AdMob advertising SDK, directly increasing company ad revenue through optimised ad placement and format selection.</li>
+          <li>Researched best practices for user engagement and ad monetisation strategies.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">Academic Background</div>
+    <h2>Education</h2>
+    <p class="section-intro">Blending technical computer science foundations with postgraduate business and data analytics expertise.</p>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">MSc International Business with Data Analytics</div>
+      <div class="edu-uni">Ulster University · Birmingham, UK</div>
+      <div class="edu-period">2024 – 2025</div>
+      <div class="edu-badge">EQF Level 7</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">BSc (Hons) Computer Science</div>
+      <div class="edu-uni">PMAS Arid Agriculture University · Islamabad</div>
+      <div class="edu-period">2011 – 2015</div>
+      <div class="edu-badge">EQF Level 6</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / CONTACT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label">About Me</div>
+      <h2>Passionate about building things that matter</h2>
+      <p>I'm a results-driven Senior Android Developer based in Birmingham with over eight years of professional experience delivering mobile solutions at scale — from consumer apps to security-critical government systems.</p>
+      <p>My MSc in International Business with Data Analytics gives me a rare edge: I understand both the engineering and the business impact of what I build. I thrive in collaborative environments and bring a mentoring mindset to every team I join.</p>
+      <p>Currently seeking senior Android or mobile engineering roles in the UK market where I can contribute immediately and grow long-term.</p>
+    </div>
+    <div class="contact-block reveal">
+      <h3>Let's Talk</h3>
+      <p>Open to senior roles, contract positions, and interesting collaborations across the UK.</p>
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <a href="mailto:waqaskhan_7@hotmail.com">waqaskhan_7@hotmail.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <span>+44 7435 690 264</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <span>Birmingham, B23 7PR, United Kingdom</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🇬🇧</div>
+        <span>Right to work in the UK</span>
+      </div>
+      <a href="mailto:waqaskhan_7@hotmail.com" class="btn-primary" style="display:inline-block;margin-top:1.5rem;">Send a Message</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Muhammad Waqas Khan</span> · Senior Android Developer · Birmingham, UK</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
